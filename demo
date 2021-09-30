@@ -1,0 +1,72 @@
+import pyautogui
+
+print(pyautogui.size())  # 返回显示器的尺寸整数元组(x, y)。
+
+print(pyautogui.position())  # 返回整数元组(x, y)的鼠标位置
+
+import pyautogui  # 导入pyautogui库
+
+screenWidth, screenHeight = pyautogui.size()  # 获取屏幕尺寸
+pyautogui.moveTo(screenWidth / 2, screenHeight / 2)  # 鼠标移动到屏幕中心
+currentMouseX, currentMouseY = pyautogui.position()  # 获取鼠标当前位置
+print(currentMouseX, currentMouseY)  # 打印鼠标位置，输出屏幕中心值
+pyautogui.PAUSE = 2.5  # 更改操作延迟时间为2.5秒
+pyautogui.FAILSAFE = True  # 鼠标光标在屏幕左上角，会导致程序异常，用于终止程序运行。
+pyautogui.moveTo(100, 200, duration=1.2)  # 用1.2秒的时间把光标移动到(100, 200)绝对坐标位置
+pyautogui.moveRel(50, 100, duration=1.5)  # 从鼠标当前位置移动，向右50像素，向下100像素，移动鼠标用1.5秒的时间。
+pyautogui.click(x=100, y=200, duration=2)  # 先用2秒钟时间移动到(100, 200)再单击鼠标左键（默认）
+pyautogui.click(50, 100, clicks=3, interval=0.25, button='right')  # 先移动到绝对坐标（50,100），单击3次，间隔0.25秒，鼠标右键
+
+pyautogui.rightClick(x=100, y=200)  # 移动到绝对位置（100, 200）单击鼠标右键
+pyautogui.middleClick(x=100, y=200)  # 移动到绝对位置（100, 200）单击鼠标中键
+pyautogui.doubleClick(x=100, y=200)  # 移动到绝对位置（100, 200）双击鼠标
+pyautogui.tripleClick(x=100, y=200)  # 移动到绝对位置（100, 200）三击鼠标
+pyautogui.scroll(10, x=100, y=100)  # 移动到(100, 100)位置，然后滚轮向上滚动10格
+pyautogui.mouseDown(x=100, y=200, button='left')
+pyautogui.mouseUp(x=100, y=200, button='left')
+pyautogui.mouseUp(button='right', x=100, y=200)  # 移动到(100, 200)位置，然后松开鼠标右键
+pyautogui.dragTo(100, 200, button='left')  # 鼠标左键拖拽到屏幕“100，200”的位置
+pyautogui.dragTo(300, 400, 2, button='left')  # 鼠标左键用“2秒”拖拽到屏幕“300，400”的位置
+pyautogui.dragRel(30, 0, 2, button='left')  # 鼠标左键用“2秒”拖拽到相对当前位置右边30像素的位置
+pyautogui.dragRel(30, 0, duration=2, button='left')  # 上面也可以写成这样
+# 缓动/渐变函数可以改变光标移动过程的速度和方向。通常鼠标是匀速直线运动，这就是线性缓动/渐变函数。PyAutoGUI有30种缓动/渐变函数，可以通过pyautogui.ease*?查看。
+pyautogui.moveTo(100, 100, 2, pyautogui.easeInQuad)  # 开始很慢，不断加速
+pyautogui.moveTo(100, 100, 2, pyautogui.easeOutQuad)  # 开始很快，不断减速
+pyautogui.moveTo(100, 100, 2, pyautogui.easeInOutQuad)  # 开始和结束都快，中间比较慢
+pyautogui.moveTo(100, 100, 2, pyautogui.easeInBounce)  # 一步一徘徊前进
+pyautogui.moveTo(100, 100, 2, pyautogui.easeInElastic)  # 徘徊幅度更大，甚至超过起点和终点
+# 键盘控制函数
+pyautogui.typewrite('Hello world!\n', interval=0.1)  # 模拟按键依次键入Hello world!字符并换行（\n），按键的时间间隔0.1秒。
+pyautogui.typewrite(['a', 'b', 'c', 'left', 'backspace', 'enter', 'f1'], interval=0.1)  # 依然按列表中的按键，间隔0.1秒
+pyautogui.press('esc')  # 按一下键盘Esc键
+pyautogui.press(['left', 'left', 'left'])  # 键盘上三次点击左方向键左箭头
+
+pyautogui.keyDown('a')  # 按下a不释放
+pyautogui.keyUp('a')  # 释放a
+
+pyautogui.keyDown('shift')  # 按下shift不释放
+pyautogui.press('left')  # 一次左方向键左箭头
+pyautogui.press('left')  # 二次左方向键左箭头
+pyautogui.press('left')  # 三次左方向键左箭头
+pyautogui.keyUp('shift')  # 释放shift键
+
+pyautogui.hotkey('ctrl', 'a')  # 全选 同时按下CTRL和a
+
+pyautogui.keyDown('ctrl')  # 按下Ctrl不释放
+pyautogui.keyDown('a')  # 按下a不释放
+pyautogui.keyUp('a')  # 释放a
+pyautogui.keyUp('ctrl')  # 释放Ctrl键
+
+pyautogui.KEYBOARD_KEYS[:10]  # 用列表的方式获取前10
+
+pyautogui.alert(text='', title='', button='OK')  # 显示一个简单的带文字和OK按钮的消息弹窗。用户点击后返回button的文字。
+
+pyautogui.confirm(text='', title='', buttons=['OK', 'Cancel'])  # 显示OK和Cancel按钮的消息弹窗。用户点击后返回button的文字。
+pyautogui.confirm(text='', title='', buttons=range(10))  # 显示0-9十个按键的消息弹窗。用户点击后返回button的文字。
+
+
+pyautogui.prompt(text='', title='' , default='') # 可以输入的消息弹窗，带OK和Cancel按钮。用户点击OK按钮返回输入的文字，点击Cancel按钮返回None。
+
+pyautogui.password(text='', title='', default='', mask='*') # 样式同prompt()，用于输入密码，消息用*表示。带OK和Cancel按钮。用户点击OK按钮返回输入的文字，点击Cancel按钮返回None。
+
+
